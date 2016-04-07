@@ -3,6 +3,7 @@ MAINTAINER Giovanni Derks <giovanni.derks@steellondon.com>
 
 RUN apt-get update && apt-get install -y \
     apache2 \
+    git \
     php5 \
     php5-cli \
     php5-curl \

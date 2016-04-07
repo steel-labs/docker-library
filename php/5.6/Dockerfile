@@ -4,6 +4,7 @@ MAINTAINER Giovanni Derks <giovanni.derks@steellondon.com>
 COPY config/php.ini /usr/local/etc/php/
 
 RUN apt-get update && apt-get install -y \
+    git \
     libmcrypt-dev \
     libtidy-dev \
     libfreetype6-dev \
