@@ -8,9 +8,10 @@ RUN apt-get update && apt-get install -y \
     libmcrypt-dev \
     libtidy-dev \
     libfreetype6-dev \
-    libjpeg62-turbo-dev
+    libjpeg62-turbo-dev \
+    libxml2-dev
 
-RUN docker-php-ext-install pdo_mysql mcrypt tidy mbstring zip
+RUN docker-php-ext-install pdo_mysql mcrypt tidy mbstring soap zip
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install gd
 
