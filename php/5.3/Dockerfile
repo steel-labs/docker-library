@@ -1,6 +1,8 @@
 FROM ubuntu:12.04
 MAINTAINER Giovanni Derks <giovanni.derks@steellondon.com>
 
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN apt-get update && apt-get install -y \
     apache2 \
     git \
@@ -12,12 +14,17 @@ RUN apt-get update && apt-get install -y \
     php5-mysqlnd \
     php5-tidy \
     php5-xdebug \
-    phpunit
+    phpunit \
+    locales
+
+# Ensure that we have the UTF-8 British and American English locale
+RUN locale-gen en_GB.UTF-8 en_US.UTF-8
+
 
 COPY config/docker_php.ini /etc/php5/apache2/conf.d/
 
 RUN php -r "readfile('https://getcomposer.org/installer');" > composer-setup.php && \
-    php -r "if (hash('SHA384', file_get_contents('composer-setup.php')) === '7228c001f88bee97506740ef0888240bd8a760b046ee16db8f4095c0d8d525f2367663f22a46b48d072c816e7fe19959') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
+    php -r "if (hash('SHA384', file_get_contents('composer-setup.php')) === '070854512ef404f16bac87071a6db9fd9721da1684cd4589b1196c3faf71b9a2682e2311b36a5079825e155ac7ce150d') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
     php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
     php -r "unlink('composer-setup.php');" && \
     chmod +x /usr/local/bin/composer
