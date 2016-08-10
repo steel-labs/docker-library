@@ -1,4 +1,4 @@
-FROM ruby:2.2.4-alpine
+FROM ruby:2.3.1-alpine
 MAINTAINER Giovanni Derks <giovanni.derks@steellondon.com>
 
 # Install build tools
