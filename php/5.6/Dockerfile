@@ -28,7 +28,7 @@ RUN docker-php-ext-install gd
 RUN a2enmod rewrite
 
 RUN php -r "readfile('https://getcomposer.org/installer');" > composer-setup.php && \
-    php -r "if (hash('SHA384', file_get_contents('composer-setup.php')) === '070854512ef404f16bac87071a6db9fd9721da1684cd4589b1196c3faf71b9a2682e2311b36a5079825e155ac7ce150d') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
+    php -r "if (hash('SHA384', file_get_contents('composer-setup.php')) === '55d6ead61b29c7bdee5cccfb50076874187bd9f21f65d8991d46ec5cc90518f447387fb9f76ebae1fbbacf329e583e30') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
     php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
     php -r "unlink('composer-setup.php');" && \
     chmod +x /usr/local/bin/composer
